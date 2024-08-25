@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose'; 
+import userRoutes from './routes/user.route.js'
 process.loadEnvFile(".env");
 mongoose.connect(process.env.MONGO)
 .then(()=> {
@@ -10,7 +11,7 @@ mongoose.connect(process.env.MONGO)
 })
 const app = express();
 
-
+app.use('/api/user', userRoutes);
 
 
 app.listen(3000, ()=> {
