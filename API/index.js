@@ -7,14 +7,23 @@ mongoose.connect(process.env.MONGO)
 .then(()=> {
     console.log("Database is connected!");
 })
-.catch((err)=> {
-    console.log(err);
-})
+.catch((error)=> {
+    console.log(error);
+});
 const app = express();
 
 app.use(express.json()); 
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
+app.use((err,req,res,next) => {
+    const statusCode = err.statusCode || 500;
+    const message = err.message || 'Internal Server Error';
+    res.status(statusCode).json({
+        success: false,
+        statusCode,
+        message,
+    });
+});
 
 
 app.listen(3000, ()=> {
