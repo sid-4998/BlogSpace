@@ -11,7 +11,9 @@ mongoose.connect(process.env.MONGO)
     console.log(error);
 });
 const app = express();
-
+app.listen(3000, ()=> {
+    console.log('Server is ready on port 3000!!');
+});
 app.use(express.json()); 
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
@@ -23,9 +25,4 @@ app.use((err,req,res,next) => {
         statusCode,
         message,
     });
-});
-
-
-app.listen(3000, ()=> {
-    console.log('Server is ready on port 3000!!');
 });
