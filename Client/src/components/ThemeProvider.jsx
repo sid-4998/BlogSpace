@@ -1,15 +1,18 @@
+
 import { useSelector } from 'react-redux';
 
 // eslint-disable-next-line react/prop-types
-const ThemeProvider = ({children }) => {
-  const { theme } = useSelector((state) => state.theme);
+const ThemeProvider = ({ children }) => {
+  // Fetch theme from Redux state, with a fallback to 'default-theme'
+  const theme = useSelector((state) => state.theme?.theme || 'default-theme');
+
   return (
-    <div className={theme}>
-      <div className='bg-white text-gray-700 dark:text-gray-200 dark:bg-[rgb(16,23,42)] min-h-screen'>
+    <div className={(theme)}>
+      <div className="bg-white text-gray-700 dark:text-gray-200 dark:bg-[rgb(16,23,42)] min-h-screen">
         {children}
       </div>
     </div>
   );
-}
+};
 
 export default ThemeProvider;
