@@ -2,7 +2,7 @@ import User from '../models/user.model.js';
 import bcryptjs from 'bcryptjs';
 import { errorHandler } from '../utils/error.js';
 import jwt from 'jsonwebtoken';
-
+process.loadEnvFile(".env");
 export const SignUp = async (req, res, next) => {
   const { username, email, password } = req.body;
 
@@ -53,13 +53,15 @@ export const SignIn = async (req, res, next) => {
       { id: validUser._id, isAdmin: validUser.isAdmin },
       process.env.JWT_SECRET
     );
-
+    console.log(token);
     const { password: pass, ...rest } = validUser._doc;
 
     res
       .status(200)
       .cookie('access_token', token, {
         httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
       })
       .json(rest);
   } catch (error) {
@@ -81,6 +83,8 @@ export const google = async (req, res, next) => {
         .status(200)
         .cookie('access_token', token, {
           httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
         })
         .json(rest);
     } else {
@@ -106,6 +110,8 @@ export const google = async (req, res, next) => {
         .status(200)
         .cookie('access_token', token, {
           httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
         })
         .json(rest);
     }

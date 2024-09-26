@@ -3,8 +3,9 @@ import mongoose from 'mongoose';
 import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
+process.loadEnvFile(".env");
 
-process.loadEnvFile('.env');
 const connectDB = async () => {
     try {
         await mongoose.connect(process.env.MONGO);
@@ -19,10 +20,13 @@ connectDB();
 const app = express();
 
 app.use(express.json()); 
-app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(cors({
+    origin: 'http://localhost:5173/',  // Adjust according to your frontend's domain
+    credentials: true, // Allow credentials (cookies)
+  }));
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
-app.use(cookieParser());
 app.use((err,req,res,next) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || 'Internal Server Error';
