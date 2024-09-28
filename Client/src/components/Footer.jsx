@@ -26,7 +26,7 @@ export default function FooterCom() {
                   target='_blank'
                   rel='noopener noreferrer'
                 >
-                  100 JS Projects
+                  Portfolio
                 </Footer.Link>
                 <Footer.Link
                   href='/about'
@@ -41,7 +41,7 @@ export default function FooterCom() {
               <Footer.Title title='Follow us' />
               <Footer.LinkGroup col>
                 <Footer.Link
-                  href='https://www.github.com/sahandghavidel'
+                  href='https://www.github.com/sid-4998'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -70,7 +70,7 @@ export default function FooterCom() {
             <Footer.Icon href='#' icon={BsFacebook}/>
             <Footer.Icon href='#' icon={BsInstagram}/>
             <Footer.Icon href='#' icon={BsTwitter}/>
-            <Footer.Icon href='https://github.com/sahandghavidel' icon={BsGithub}/>
+            <Footer.Icon href='https://github.com/sid-4998' icon={BsGithub}/>
             <Footer.Icon href='#' icon={BsDribbble}/>
 
           </div>
