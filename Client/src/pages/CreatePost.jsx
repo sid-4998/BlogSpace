@@ -107,6 +107,12 @@ export default function CreatePost() {
             <option value='javascript'>JavaScript</option>
             <option value='reactjs'>React.js</option>
             <option value='nextjs'>Next.js</option>
+            <option value='nextjs'>Node.js</option>
+            <option value='nextjs'>express.js</option>
+            <option value='nextjs'>CSS</option>
+            <option value='nextjs'>TailWindCSS</option>
+            <option value='nextjs'>MongoDB</option>
+            <option value='nextjs'>PostgreSQL</option>
           </Select>
         </div>
         <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3'>

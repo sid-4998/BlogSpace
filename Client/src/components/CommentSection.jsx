@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Comment from './Comment';
-// eslint-disable-next-line react/prop-types
+import propTypes  from 'prop-types';
 export default function CommentSection({ postId }) {
   const { currentUser } = useSelector((state) => state.user);
   const [comment, setComment] = useState('');
@@ -122,4 +122,8 @@ export default function CommentSection({ postId }) {
       )}
     </div>
   );
+}
+
+CommentSection.propTypes = {
+  postId: propTypes.string
 }

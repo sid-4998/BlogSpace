@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import propTypes from 'prop-types' 
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 export default function Comment({ comment }) {
@@ -38,4 +38,8 @@ export default function Comment({ comment }) {
       </div>
     </div>
   );
+}
+
+Comment.propTypes = {
+  comment: propTypes.string
 }

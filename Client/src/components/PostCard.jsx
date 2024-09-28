@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
+import propTypes from 'prop-types';
 
 export default function PostCard({ post }) {
   return (
@@ -23,4 +23,8 @@ export default function PostCard({ post }) {
       </div>
     </div>
   );
+}
+
+PostCard.propTypes = {
+  post: propTypes.any
 }
