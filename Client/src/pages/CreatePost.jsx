@@ -13,14 +13,15 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate } from 'react-router-dom';
 
-
 export default function CreatePost() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
+
   const navigate = useNavigate();
+
   const handleUpdloadImage = async () => {
     try {
       if (!file) {
@@ -39,7 +40,8 @@ export default function CreatePost() {
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setImageUploadProgress(progress.toFixed(0));
         },
-        () => {
+        // eslint-disable-next-line no-unused-vars
+        (error) => {
           setImageUploadError('Image upload failed');
           setImageUploadProgress(null);
         },
@@ -57,7 +59,6 @@ export default function CreatePost() {
       console.log(error);
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -107,16 +108,16 @@ export default function CreatePost() {
             <option value='javascript'>JavaScript</option>
             <option value='reactjs'>React.js</option>
             <option value='nextjs'>Next.js</option>
-            <option value='nextjs'>Node.js</option>
-            <option value='nextjs'>express.js</option>
-            <option value='nextjs'>CSS</option>
-            <option value='nextjs'>TailWindCSS</option>
-            <option value='nextjs'>MongoDB</option>
-            <option value='nextjs'>PostgreSQL</option>
+            <option value='nodejs'>Node.js</option>
+            <option value='expressjs'>express.js</option>
+            <option value='css'>CSS</option>
+            <option value='tcss'>TailwindCSS</option>
+            <option value='mongodb'>MongoDB</option>
+            <option value='postgresql'>PostgreSQL</option>
           </Select>
         </div>
         <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3'>
-        <FileInput
+          <FileInput
             type='file'
             accept='image/*'
             onChange={(e) => setFile(e.target.files[0])}
@@ -148,8 +149,7 @@ export default function CreatePost() {
             alt='upload'
             className='w-full h-72 object-cover'
           />
-        )
-        }
+        )}
         <ReactQuill
           theme='snow'
           placeholder='Write something...'

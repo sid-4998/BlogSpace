@@ -1,7 +1,6 @@
-
+import propTypes from 'prop-types'
 import { useSelector } from 'react-redux';
 
-// eslint-disable-next-line react/prop-types
 const ThemeProvider = ({ children }) => {
   // Fetch theme from Redux state, with a fallback to 'default-theme'
   const theme = useSelector((state) => state.theme?.theme || 'default-theme');
@@ -14,5 +13,9 @@ const ThemeProvider = ({ children }) => {
     </div>
   );
 };
+
+ThemeProvider.propTypes = {
+  children: propTypes.any
+}
 
 export default ThemeProvider;

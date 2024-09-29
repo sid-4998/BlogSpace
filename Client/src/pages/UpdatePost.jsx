@@ -1,6 +1,6 @@
 import { Alert, Button, FileInput, Select, TextInput } from 'flowbite-react';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.snow.css'; 
 import {
   getDownloadURL,
   getStorage,
@@ -21,7 +21,8 @@ export default function UpdatePost() {
   const [publishError, setPublishError] = useState(null);
   const { postId } = useParams();
   const navigate = useNavigate();
-    const { currentUser } = useSelector((state) => state.user);
+  const { currentUser } = useSelector((state) => state.user);
+
   useEffect(() => {
     try {
       const fetchPost = async () => {
@@ -42,6 +43,7 @@ export default function UpdatePost() {
       console.log(error.message);
     }
   }, [postId]);
+
   const handleUpdloadImage = async () => {
     try {
       if (!file) {
@@ -82,7 +84,7 @@ export default function UpdatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`/api/post/updatepost/${formData._id}/${currentUser._id}`, {
+      const res = await fetch(`/api/post/updatepost/${postId}/${currentUser._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -129,6 +131,12 @@ export default function UpdatePost() {
             <option value='javascript'>JavaScript</option>
             <option value='reactjs'>React.js</option>
             <option value='nextjs'>Next.js</option>
+            <option value='nodejs'>Node.js</option>
+            <option value='expressjs'>express.js</option>
+            <option value='css'>CSS</option>
+            <option value='tcss'>TailwindCSS</option>
+            <option value='mongodb'>MongoDB</option>
+            <option value='postgresql'>PostgreSQL</option>
           </Select>
         </div>
         <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3'>
@@ -169,8 +177,9 @@ export default function UpdatePost() {
           theme='snow'
           value={formData.content}
           placeholder='Write something...'
-          className='h-72 mb-12'
+          className='h-72 mb-12 text-black dark:text-white'
           required
+          bounds="#editor"
           onChange={(value) => {
             setFormData({ ...formData, content: value });
           }}
