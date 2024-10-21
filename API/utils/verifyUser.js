@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { errorHandler } from './error.js';
-process.loadEnvFile(".env");
+import 'dotenv/config'
 export const verifyToken = (req, res, next) => {
   const token = req.cookies.access_token;
   if (!token) {
