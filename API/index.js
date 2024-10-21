@@ -7,7 +7,7 @@ import commentRoutes from './routes/comment.route.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import path from 'path';
-process.loadEnvFile(".env");
+import 'dotenv/config'
 
 const connectDB = async () => {
     try {
